@@ -9,13 +9,17 @@ import java.util.Date;
 public class Patient {
 
     private String naam;
+    private String wachtwoord;
     private Date geboorteDatum;
+    private int patientNr;
     private boolean aanwezig;
 
     private ArrayList<Afspraak> agenda;
 
-    public Patient(String naam, Date geboorteDatum) {
+    public Patient(String naam, Date geboorteDatum, String wachtwoord, int patientNr) {
         this.naam = naam;
+        this.wachtwoord = wachtwoord;
+        this.patientNr = patientNr;
         this.geboorteDatum = geboorteDatum;
         this.aanwezig = false;
         this.agenda = new ArrayList();
