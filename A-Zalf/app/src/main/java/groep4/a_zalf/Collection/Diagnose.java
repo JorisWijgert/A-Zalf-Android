@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Diagnose {
 
-    private String beschrijving, qrCode;
+    private String beschrijving, qrCode, prescriptie;
 
     private ArrayList<Date> reminders;
 
@@ -23,6 +23,14 @@ public class Diagnose {
         this.qrCode = qrCode;
         this.reminders = reminders;
     }
+
+    public Diagnose(String beschrijving, String qrCode, String prescriptie) {
+        this.beschrijving = beschrijving;
+        this.qrCode = qrCode;
+        this.prescriptie = prescriptie;
+    }
+
+    public String getPrescriptie() { return this.prescriptie; }
 
     public String getBeschrijving() {
         return beschrijving;

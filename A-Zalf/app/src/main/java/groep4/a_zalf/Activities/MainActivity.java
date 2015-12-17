@@ -29,11 +29,10 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-        ziekenhuis = new Ziekenhuis();
+        ziekenhuis = new Ziekenhuis(true, getApplicationContext());
 
-        InitializeUIComponents();
-        Inloggen();
-
+        initializeUIComponents();
+        inloggen();
     }
 
     @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void Inloggen() {
+    private void inloggen() {
         btInloggen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void InitializeUIComponents() {
+    private void initializeUIComponents() {
         etPatientNr = (EditText) findViewById(R.id.etPatientNr);
         etWachtwoord = (EditText) findViewById(R.id.etWachtwoord);
         btInloggen = (Button) findViewById(R.id.btInloggen);

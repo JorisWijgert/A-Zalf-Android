@@ -15,12 +15,22 @@ public class Patient {
     private boolean aanwezig;
 
     private ArrayList<Afspraak> agenda;
+    private Diagnose diagnose;
 
     public Patient(String naam, Date geboorteDatum, String wachtwoord, int patientNr) {
         this.naam = naam;
         this.wachtwoord = wachtwoord;
         this.patientNr = patientNr;
         this.geboorteDatum = geboorteDatum;
+        this.aanwezig = false;
+        this.agenda = new ArrayList();
+    }
+
+    public Patient(String naam, String wachtwoord, int patientNr) {
+        this.naam = naam;
+        this.wachtwoord = wachtwoord;
+        this.patientNr = patientNr;
+        this.geboorteDatum = new Date();
         this.aanwezig = false;
         this.agenda = new ArrayList();
     }
@@ -37,7 +47,15 @@ public class Patient {
         agenda.add(new Afspraak(tijdstip, tijdsduur, arts, this, informatie));
     }
 
+    public void geef(Diagnose diagnose) {
+        this.diagnose = diagnose;
+    }
+
     public int getPatientNr() { return this.patientNr; }
 
     public String getWachtwoord() {return this.wachtwoord; }
+
+    public String getNaam() {return this.naam; }
+
+    public Date getGeboorteDatum() {return this.geboorteDatum; }
 }
