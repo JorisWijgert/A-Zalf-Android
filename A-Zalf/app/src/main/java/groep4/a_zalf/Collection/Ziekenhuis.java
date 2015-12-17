@@ -23,4 +23,13 @@ public class Ziekenhuis {
         patienten.add(new Patient("Ramon Janssen", new Date(), "123", 1234567));
     }
 
+    public boolean inloggen(String patientNr, String wachtwoord) {
+        for (Patient patient : patienten) {
+            if ((Integer.toString(patient.getPatientNr())).equals(patientNr) && patient.getWachtwoord().equals(wachtwoord)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

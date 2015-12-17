@@ -37,5 +37,7 @@ public class Patient {
         agenda.add(new Afspraak(tijdstip, tijdsduur, arts, this, informatie));
     }
 
+    public int getPatientNr() { return this.patientNr; }
 
+    public String getWachtwoord() {return this.wachtwoord; }
 }
