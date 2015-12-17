@@ -25,7 +25,7 @@ public class Ziekenhuis {
         this.context = context;
         this.handler = new DbHandler(context, null, null, 1);
 
-        if (fillDatabase) {
+        if (fillDatabase && handler.isEmpty("patienten")) {
             fillDatabase();
         }
     }

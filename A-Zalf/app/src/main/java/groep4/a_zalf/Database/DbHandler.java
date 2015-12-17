@@ -59,6 +59,15 @@ public class DbHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean isEmpty(String TABLE_NAME) {
+        String query = "SELECT count(*) FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        return cursor.getInt(0) > 0;
+    }
+
     public boolean findPatientBy(String patientNr, String wachtwoord) {
         String query = "Select * FROM " + TABLE_PATIENTEN + " WHERE " + COLUMN_PATIENTNR + " = " + patientNr +  " AND " + COLUMN_WACHTWOORD + " = " + wachtwoord;
 
@@ -86,7 +95,6 @@ public class DbHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
-
             patient = new Patient(cursor.getString(2), cursor.getString(4), cursor.getInt(1));
             cursor.close();
         }
