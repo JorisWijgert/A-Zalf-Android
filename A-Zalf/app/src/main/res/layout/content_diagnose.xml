@@ -48,5 +48,6 @@
         android:layout_height="100dp"
         android:id="@+id/ivQRcode"
         android:layout_below="@+id/tvPrescriptie"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/qrcode" />
 </RelativeLayout>
