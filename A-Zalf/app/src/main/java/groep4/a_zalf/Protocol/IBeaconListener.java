@@ -19,10 +19,10 @@
  * under the License.
  */
 
-package protocol;
+package groep4.a_zalf.Protocol;
 
 /**
- * Listener for iBeacon protocol events
+ * Listener for iBeacon groep4.a_zalf.protocol events
  * 
  * @author inakivazquez
  *
@@ -54,7 +54,7 @@ public interface IBeaconListener {
 	public void searchState(int state);
 
 	/**
-	 * Called to notify an error in the iBeacon protocol, probably due to the BluetoothAdapter
+	 * Called to notify an error in the iBeacon groep4.a_zalf.protocol, probably due to the BluetoothAdapter
 	 * @param status The error status code
 	 */
 	public void operationError(int status);	

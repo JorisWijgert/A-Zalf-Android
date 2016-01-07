@@ -15,16 +15,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import groep4.a_zalf.Collection.Afspraak;
+import groep4.a_zalf.Collection.*;
 import groep4.a_zalf.R;
-import protocol.IBeacon;
-import protocol.IBeaconListener;
-import protocol.IBeaconProtocol;
-import protocol.StringUtilities;
-import protocol.Utils;
+import groep4.a_zalf.Protocol.IBeacon;
+import groep4.a_zalf.Protocol.IBeaconListener;
+import groep4.a_zalf.Protocol.IBeaconProtocol;
+import groep4.a_zalf.Protocol.StringUtilities;
+import groep4.a_zalf.Protocol.Utils;
 
 public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
@@ -73,12 +72,20 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
         ibp.setListener(this);
     }
 
-    private void makeAfspraken(){
+    private void makeAfspraken() {
         afspraken = new ArrayList();
+        Arts a = new Arts("Henk Janssen", "12");
+        Patient p = new Patient("Harrie", "001", 12);
+        Informatie i = new Informatie("Er zitten vreemde plekken op mijn been");
 
-        Calendar nowDate = Calendar.getInstance();
         Calendar startDate1 = Calendar.getInstance();
-        //afspraken.add(new Afspraak());
+        startDate1.add(Calendar.MINUTE, 15);
+        Calendar timeLength = StringUtilities.datum("01-01-1901 00:30:00");
+        afspraken.add(new Afspraak(startDate1, timeLength, a, p, i));
+
+        Calendar startDate2 = Calendar.getInstance();
+        startDate2.add(Calendar.HOUR, 2);
+        afspraken.add(new Afspraak(startDate2, timeLength, a, p, i));
     }
 
     @Override
@@ -89,6 +96,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
     /**
      * Call this when the phone needs to search for iBeacons.
+     *
      * @param view
      */
     public void startSearch(View view) {
@@ -133,6 +141,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
      * The point where an action can be performed when the iBeacon is found
      * our iBeacon has the following uuid:
      * "F7826DA6-4FA2-4E98-8024-BC5B71E0893E"
+     *
      * @param ibeacon The iBeacon found
      */
     @Override
@@ -143,6 +152,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
     /**
      * Do things when the search has started or ended
+     *
      * @param state The state, either <code>SEARCH_STARTED</code>, <code>SEARCH_END_EMPTY</code> or <code>SEARCH_END_SUCCESS</code>
      */
     @Override
@@ -154,6 +164,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
     /**
      * When something went wrong
+     *
      * @param status The error status code
      */
     @Override

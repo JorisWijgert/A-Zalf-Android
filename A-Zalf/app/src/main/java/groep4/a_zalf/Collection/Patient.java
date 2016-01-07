@@ -1,6 +1,7 @@
 package groep4.a_zalf.Collection;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -43,7 +44,7 @@ public class Patient {
         return aanwezig;
     }
 
-    public void addAfspraak(Date tijdstip, Date tijdsduur, Arts arts, Informatie informatie) {
+    public void addAfspraak(Calendar tijdstip, Calendar tijdsduur, Arts arts, Informatie informatie) {
         agenda.add(new Afspraak(tijdstip, tijdsduur, arts, this, informatie));
     }
 

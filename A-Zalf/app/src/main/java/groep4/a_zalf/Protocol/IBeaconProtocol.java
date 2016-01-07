@@ -19,7 +19,7 @@
  * under the License.
  */
 
-package protocol;
+package groep4.a_zalf.Protocol;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -35,7 +35,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Basic iBeacon discovery protocol
+ * Basic iBeacon discovery groep4.a_zalf.protocol
  * 
  * @author inakivazquez
  *

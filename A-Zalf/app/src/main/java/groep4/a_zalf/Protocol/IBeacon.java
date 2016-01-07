@@ -19,7 +19,7 @@
  * under the License.
  */
 
-package protocol;
+package groep4.a_zalf.Protocol;
 
 import java.io.Serializable;
 
