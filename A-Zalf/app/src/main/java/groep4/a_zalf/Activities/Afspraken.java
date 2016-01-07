@@ -31,7 +31,7 @@ public class Afspraken extends AppCompatActivity {
             }
         });
 
-        InitializeUIComponents();
+        initializeUIComponents();
 
         btDiagnose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class Afspraken extends AppCompatActivity {
         });
     }
 
-    private void InitializeUIComponents() {
+    private void initializeUIComponents() {
         btDiagnose = (Button) findViewById(R.id.btDiagnose);
     }
 

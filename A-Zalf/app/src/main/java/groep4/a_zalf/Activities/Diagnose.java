@@ -27,6 +27,7 @@ public class Diagnose extends AppCompatActivity {
         initializeUIComponents();
 
         groep4.a_zalf.Collection.Diagnose diagnose = new groep4.a_zalf.Collection.Diagnose("Eczeem", "", "Prednison");
+
         tvDiagnose.setText(diagnose.getBeschrijving());
         tvPrescriptie.setText(diagnose.getPrescriptie());
     }
