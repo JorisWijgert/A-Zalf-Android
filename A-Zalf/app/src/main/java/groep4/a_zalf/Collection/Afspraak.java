@@ -1,5 +1,6 @@
 package groep4.a_zalf.Collection;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  */
 public class Afspraak {
 
-    private Date tijdstip, tijdsduur;
+    private Calendar tijdstip, tijdsduur;
 
     private Diagnose diagnose;
     private Informatie informatie;
@@ -15,7 +16,7 @@ public class Afspraak {
     private Arts arts;
     private Patient patient;
 
-    public Afspraak(Date tijdstip, Date tijdsduur, Arts arts, Patient patient, Informatie informatie) {
+    public Afspraak(Calendar tijdstip, Calendar tijdsduur, Arts arts, Patient patient, Informatie informatie) {
         this.tijdstip = tijdstip;
         this.tijdsduur = tijdsduur;
         this.arts = arts;

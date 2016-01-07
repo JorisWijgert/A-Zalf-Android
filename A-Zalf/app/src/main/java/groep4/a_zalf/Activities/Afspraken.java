@@ -13,10 +13,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import groep4.a_zalf.Collection.Afspraak;
 import groep4.a_zalf.R;
 import protocol.IBeacon;
 import protocol.IBeaconListener;
 import protocol.IBeaconProtocol;
+import protocol.StringUtilities;
 import protocol.Utils;
 
 public class Afspraken extends AppCompatActivity implements IBeaconListener {
@@ -27,6 +34,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
     private static IBeacon beacon;
     private static IBeaconProtocol ibp;
+
+    private List<Afspraak> afspraken;
 
     Activity context = this;
 
@@ -56,11 +65,20 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
             }
         });
         setUpIBeacon();
+        makeAfspraken();
     }
 
     private void setUpIBeacon() {
         ibp = IBeaconProtocol.getInstance(this);
         ibp.setListener(this);
+    }
+
+    private void makeAfspraken(){
+        afspraken = new ArrayList();
+
+        Calendar nowDate = Calendar.getInstance();
+        Calendar startDate1 = Calendar.getInstance();
+        //afspraken.add(new Afspraak());
     }
 
     @Override
