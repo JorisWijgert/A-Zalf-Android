@@ -14,6 +14,7 @@ import groep4.a_zalf.R;
 
 public class Diagnose extends AppCompatActivity {
 
+    private Toolbar tbDiagnose;
     private TextView tvDiagnose, tvPrescriptie;
     private ImageView ivQRcode;
 
@@ -27,6 +28,10 @@ public class Diagnose extends AppCompatActivity {
         initializeUIComponents();
 
         groep4.a_zalf.Collection.Diagnose diagnose = new groep4.a_zalf.Collection.Diagnose("Eczeem", "", "Prednison");
+
+        tbDiagnose = (Toolbar) findViewById(R.id.toolbar);
+        this.setSupportActionBar(tbDiagnose);
+        getSupportActionBar().setTitle("A-Zalf");
 
         tvDiagnose.setText(diagnose.getBeschrijving());
         tvPrescriptie.setText(diagnose.getPrescriptie());

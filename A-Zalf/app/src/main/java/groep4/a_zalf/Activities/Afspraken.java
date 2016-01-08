@@ -64,7 +64,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
             }
         });
         setUpIBeacon();
-        makeAfspraken();
+        //makeAfspraken();
     }
 
     private void setUpIBeacon() {
