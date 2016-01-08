@@ -166,7 +166,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
     @Override
     public void searchState(int state) {
         if (state == IBeaconProtocol.SEARCH_STARTED) {
-        } else if (state == IBeaconProtocol.SEARCH_END_EMPTY || state == IBeaconProtocol.SEARCH_END_SUCCESS) {
+        } else if (state == IBeaconProtocol.SEARCH_END_EMPTY) {
+            startSearch();
         }
     }
 
