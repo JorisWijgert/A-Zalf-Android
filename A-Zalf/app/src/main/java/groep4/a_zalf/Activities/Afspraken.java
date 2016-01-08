@@ -10,9 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -25,7 +29,7 @@ import groep4.a_zalf.Protocol.IBeaconProtocol;
 import groep4.a_zalf.Protocol.StringUtilities;
 import groep4.a_zalf.Protocol.Utils;
 
-public class Afspraken extends AppCompatActivity implements IBeaconListener {
+public class Afspraken extends AppCompatActivity implements IBeaconListener, AdapterView.OnItemClickListener {
 
     private Button btDiagnose;
 
@@ -36,6 +40,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
     private List<Afspraak> afspraken;
 
+    private ListView lvAfspraken;
+
     Activity context = this;
 
     @Override
@@ -44,6 +50,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
         setContentView(R.layout.activity_afspraken);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        afspraken = new ArrayList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +73,23 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
         });
         setUpIBeacon();
         makeAfspraken();
+        AfspraakListAdapter ala = new AfspraakListAdapter(getApplicationContext(), afspraken);
+
+        lvAfspraken = (ListView) findViewById(R.id.listViewAfspraken);
+        lvAfspraken.setAdapter(ala);
+        lvAfspraken.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        AfspraakListAdapter ala = (AfspraakListAdapter) parent.getAdapter();
+        Afspraak afspraak = ala.getItem(position);
+
+        //Navigate to the page from the game.
+//        Intent intent = new Intent(this, GameActivity.class);
+//        intent.putExtra("Game", game);
+//        intent.putExtra("User", text);
+//        startActivity(intent);
     }
 
     private void setUpIBeacon() {
@@ -73,19 +98,25 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
     }
 
     private void makeAfspraken() {
-        afspraken = new ArrayList();
         Arts a = new Arts("Henk Janssen", "12");
         Patient p = new Patient("Harrie", "001", 12);
         Informatie i = new Informatie("Er zitten vreemde plekken op mijn been");
 
         Calendar startDate1 = Calendar.getInstance();
         startDate1.add(Calendar.MINUTE, 15);
-        Calendar timeLength = StringUtilities.datum("01-01-1901 00:30:00");
-        afspraken.add(new Afspraak(startDate1, timeLength, a, p, i));
+        Calendar timeLength = Calendar.getInstance();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:ss");
+        try {
+            timeLength.setTime(sdf1.parse("00:30:00"));
+            afspraken.add(new Afspraak(startDate1, timeLength, a, p, i));
 
-        Calendar startDate2 = Calendar.getInstance();
-        startDate2.add(Calendar.HOUR, 2);
-        afspraken.add(new Afspraak(startDate2, timeLength, a, p, i));
+            Calendar startDate2 = Calendar.getInstance();
+            startDate2.add(Calendar.HOUR, 2);
+            afspraken.add(new Afspraak(startDate2, timeLength, a, p, i));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package groep4.a_zalf.Collection;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,5 +29,33 @@ public class Afspraak {
     public void setDiagnose(Diagnose diagnose) {
         this.diagnose = diagnose;
 
+    }
+
+    public Calendar getTijdstip(){
+        return tijdstip;
+    }
+
+    public Calendar getTijdsduur(){
+        return tijdsduur;
+    }
+
+    public String getBeginDateString(){
+        String returnString = "Vanaf: ";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        if (tijdstip != null){
+            returnString += sdf.format(tijdstip.getTime());
+        }
+        return returnString;
+    }
+
+    public String getEndDateString(){
+        Calendar returnCal = tijdstip;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        returnCal.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
+        String returnString = "Tot: ";
+        if (returnCal != null){
+            returnString += sdf.format(returnCal.getTime());
+        }
+        return returnString;
     }
 }
