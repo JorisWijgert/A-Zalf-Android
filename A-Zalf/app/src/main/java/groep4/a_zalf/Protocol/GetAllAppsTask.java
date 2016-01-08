@@ -55,12 +55,12 @@ public class GetAllAppsTask extends AsyncTask<Void, Void, List<ApplicationInfo>>
                 ApplicationInfo applicationInfo = applist.get(i);
                 filterList.add(applicationInfo);
             } else if ((applist.get(i).loadLabel(packageManager).toString().toUpperCase())
-                    .contains("Nu.nl".toString().toUpperCase())) {
+                    .contains("Facebook".toString().toUpperCase())) {
 
                 ApplicationInfo applicationInfo = applist.get(i);
                 filterList.add(applicationInfo);
             } else if ((applist.get(i).loadLabel(packageManager).toString().toUpperCase())
-                    .contains("Facebook".toString().toUpperCase())) {
+                    .contains("NOS".toString().toUpperCase())) {
 
                 ApplicationInfo applicationInfo = applist.get(i);
                 filterList.add(applicationInfo);

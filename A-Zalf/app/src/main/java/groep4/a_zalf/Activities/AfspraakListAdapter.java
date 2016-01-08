@@ -37,25 +37,29 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
         }
 
 
-        TextView beginDate = (TextView) afspraakView.findViewById(R.id.textViewBeginDate);
-        TextView endDate = (TextView) afspraakView.findViewById(R.id.textViewEndDate);
+        TextView datum = (TextView) afspraakView.findViewById(R.id.tvDatum);
+        TextView tijden = (TextView) afspraakView.findViewById(R.id.tvTijden);
+        TextView arts = (TextView) afspraakView.findViewById(R.id.tvArts);
         Calendar tijdstip = reqAfspraak.getTijdstip();
         Calendar tijdsduur = reqAfspraak.getTijdsduur();
         tijdstip.add(Calendar.MINUTE, -25);
-        String beginString = "Vanaf: ";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String beginString = "";
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
         if (tijdstip != null) {
-            beginString += sdf.format(tijdstip.getTime());
+            beginString += sdf1.format(tijdstip.getTime());
         }
-        beginDate.setText(beginString);
+        datum.setText(beginString);
 
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
         Calendar returnCal = tijdstip;
-        returnCal.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
-        String endString = "Tot: ";
+        String endString = "";
         if (returnCal != null) {
-            endString += sdf.format(returnCal.getTime());
+            endString += sdf2.format(tijdstip.getTime()) + " - ";
+            returnCal.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
+            endString += sdf2.format(returnCal.getTime());
         }
-        endDate.setText(endString);
+        tijden.setText(endString);
+        arts.setText("Arts: Theodore");
 //
 //        beginDate.setText(reqAfspraak.getBeginDateString());
 //

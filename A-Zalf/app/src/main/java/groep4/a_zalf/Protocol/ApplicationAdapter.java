@@ -84,13 +84,13 @@ public class ApplicationAdapter extends ArrayAdapter<ApplicationInfo> {
             holder.appPackage.setText("1 video");
             holder.icon.setImageDrawable(getContext().getPackageManager().getApplicationIcon(getItem(1)));
         } else if((getItem(position).loadLabel(packageManager).toString().toUpperCase())
-                .contains("NU.nl".toString().toUpperCase())) {
+                .contains("NOS".toString().toUpperCase())) {
             holder.appPackage.setText("3 nieuwsberichten");
-            holder.icon.setImageDrawable(getContext().getPackageManager().getApplicationIcon(getItem(2)));
+            holder.icon.setImageDrawable(getContext().getPackageManager().getApplicationIcon(getItem(3)));
         } else if((getItem(position).loadLabel(packageManager).toString().toUpperCase())
                 .contains("Facebook".toString().toUpperCase())) {
             holder.appPackage.setText("2 meldingen");
-            holder.icon.setImageDrawable(getContext().getPackageManager().getApplicationIcon(getItem(3)));
+            holder.icon.setImageDrawable(getContext().getPackageManager().getApplicationIcon(getItem(2)));
         }
 
 
@@ -110,7 +110,7 @@ public class ApplicationAdapter extends ArrayAdapter<ApplicationInfo> {
                 try {
                     Intent intent = packageManager.getLaunchIntentForPackage(app.packageName);
                     if((app.loadLabel(packageManager).toString().toUpperCase())
-                            .contains("Enquete".toString().toUpperCase()))
+                            .contains("enqu\u00EAte".toString().toUpperCase()))
                     {
                         Uri uri = Uri.parse("http://www.survio.com/survey/d/M3U9E2S1T9I3N9G1W");
                         Intent i = new Intent(Intent.ACTION_VIEW,uri);

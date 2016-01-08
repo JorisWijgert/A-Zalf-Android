@@ -41,7 +41,7 @@ public class Afspraak {
 
     public String getBeginDateString(){
         String returnString = "Vanaf: ";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         if (tijdstip != null){
             returnString += sdf.format(tijdstip.getTime());
         }
@@ -50,7 +50,7 @@ public class Afspraak {
 
     public String getEndDateString(){
         Calendar returnCal = tijdstip;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         returnCal.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
         String returnString = "Tot: ";
         if (returnCal != null){
