@@ -64,7 +64,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
             }
         });
         setUpIBeacon();
-        makeAfspraken();
+        //makeAfspraken();
+        startSearch();
     }
 
     private void setUpIBeacon() {
@@ -80,7 +81,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
 
         Calendar startDate1 = Calendar.getInstance();
         startDate1.add(Calendar.MINUTE, 15);
-        Calendar timeLength = StringUtilities.datum("01-01-1901 00:30:00");
+        Calendar timeLength = StringUtilities.datum("1-1-1901 00:30:00");
         afspraken.add(new Afspraak(startDate1, timeLength, a, p, i));
 
         Calendar startDate2 = Calendar.getInstance();
@@ -97,9 +98,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
     /**
      * Call this when the phone needs to search for iBeacons.
      *
-     * @param view
      */
-    public void startSearch(View view) {
+    public void startSearch() {
         scanBeacons();
     }
 
@@ -148,6 +148,14 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener {
     public void beaconFound(IBeacon ibeacon) {
         beacon = ibeacon;
         //TODO: THINGS WHEN BEACON FOUND
+        System.out.println("NOt found yet -------- " + beacon.getUuidHexStringDashed() + "-------------------------------------------------------- \n \n\n -------------------------------------------");
+        if(beacon.getUuidHexStringDashed().equals("F7826DA6-4FA2-4E98-8024-BC5B71E0893E"))
+        {
+            System.out.println("FOOOOOUUUUUUNNNNNNDDDD  ---------------------------------------------------------------- \n \n\n -------------------------------------------");
+            final Intent suggestiesActivity = new Intent(getApplicationContext(), Suggesties.class);
+            startActivity(suggestiesActivity);
+        }
+
     }
 
     /**

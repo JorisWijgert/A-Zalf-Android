@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_afspraken">Afspraken</string>
     <string name="title_activity_diagnose">Diagnose</string>
+    <string name="title_activity_suggesties">Suggesties</string>
+    <string name="search">Search</string>
 </resources>

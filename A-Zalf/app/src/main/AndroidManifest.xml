@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="groep4.a_zalf" >
-
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +27,11 @@
         <activity
             android:name=".Activities.Diagnose"
             android:label="@string/title_activity_diagnose"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Activities.Suggesties"
+            android:label="@string/title_activity_suggesties"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
