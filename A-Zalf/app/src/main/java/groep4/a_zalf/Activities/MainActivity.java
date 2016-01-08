@@ -21,13 +21,16 @@ public class MainActivity extends AppCompatActivity {
     private EditText etPatientNr, etWachtwoord;
     private Button btInloggen;
     private Ziekenhuis ziekenhuis;
+    private Toolbar tbInloggen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+
+        tbInloggen = (Toolbar) findViewById(R.id.toolbar);
+        this.setSupportActionBar(tbInloggen);
+        getSupportActionBar().setTitle("A-Zalf");
 
         ziekenhuis = new Ziekenhuis(true, getApplicationContext());
 

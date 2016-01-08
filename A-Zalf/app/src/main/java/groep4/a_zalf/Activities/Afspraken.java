@@ -78,6 +78,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         lvAfspraken = (ListView) findViewById(R.id.listViewAfspraken);
         lvAfspraken.setAdapter(ala);
         lvAfspraken.setOnItemClickListener(this);
+        startSearch();
     }
 
     @Override
@@ -90,6 +91,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 //        intent.putExtra("Game", game);
 //        intent.putExtra("User", text);
 //        startActivity(intent);
+        //makeAfspraken();
     }
 
     private void setUpIBeacon() {
@@ -127,10 +129,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 
     /**
      * Call this when the phone needs to search for iBeacons.
-     *
-     * @param view
      */
-    public void startSearch(View view) {
+    public void startSearch() {
         scanBeacons();
     }
 
@@ -179,6 +179,11 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void beaconFound(IBeacon ibeacon) {
         beacon = ibeacon;
         //TODO: THINGS WHEN BEACON FOUND
+        if (beacon.getUuidHexStringDashed().equals("F7826DA6-4FA2-4E98-8024-BC5B71E0893E")) {
+            final Intent suggestiesActivity = new Intent(getApplicationContext(), Suggesties.class);
+            startActivity(suggestiesActivity);
+        }
+
     }
 
     /**
@@ -189,7 +194,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     @Override
     public void searchState(int state) {
         if (state == IBeaconProtocol.SEARCH_STARTED) {
-        } else if (state == IBeaconProtocol.SEARCH_END_EMPTY || state == IBeaconProtocol.SEARCH_END_SUCCESS) {
+        } else if (state == IBeaconProtocol.SEARCH_END_EMPTY) {
+            startSearch();
         }
     }
 
