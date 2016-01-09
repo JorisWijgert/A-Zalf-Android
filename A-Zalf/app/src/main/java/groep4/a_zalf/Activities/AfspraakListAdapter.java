@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -37,6 +38,7 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
         }
 
 
+        ImageView icon = (ImageView) afspraakView.findViewById(R.id.ivIcon);
         TextView datum = (TextView) afspraakView.findViewById(R.id.tvDatum);
         TextView tijden = (TextView) afspraakView.findViewById(R.id.tvTijden);
         TextView arts = (TextView) afspraakView.findViewById(R.id.tvArts);
@@ -60,6 +62,7 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
         }
         tijden.setText(endString);
         arts.setText("Arts: Theodore");
+        icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artscircle));
 //
 //        beginDate.setText(reqAfspraak.getBeginDateString());
 //
