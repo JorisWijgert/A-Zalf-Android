@@ -31,6 +31,8 @@ public class Afspraak {
 
     }
 
+    public Arts getArts(){return arts;}
+
     public Calendar getTijdstip(){
         return tijdstip;
     }

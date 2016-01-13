@@ -61,8 +61,17 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
             endString += sdf2.format(returnCal.getTime());
         }
         tijden.setText(endString);
-        arts.setText("Arts: Theodore");
-        icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artscircle));
+        String artsNaam = reqAfspraak.getArts().getNaam();
+        arts.setText("Dermatoloog: " + artsNaam);
+        switch (artsNaam){
+            case "Theodore":
+                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstheodore));
+                break;
+            case "Friso":
+                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artsfriso));
+                break;
+        }
+        //icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstheodore));
 //
 //        beginDate.setText(reqAfspraak.getBeginDateString());
 //
