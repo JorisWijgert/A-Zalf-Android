@@ -24,7 +24,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import groep4.a_zalf.Collection.Patient;
 import groep4.a_zalf.Collection.Ziekenhuis;
+import groep4.a_zalf.Database.DbHandler;
 import groep4.a_zalf.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private Socket socket;
 
     private String messageFromServer = "leeg";
+    private int patientNrFromServer = 0;
 
-    private final String IPADDRESS = "192.168.2.109";
+    private final String IPADDRESS = "145.93.129.179";
     private final int PORT = 8888;
 
     @Override
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         initializeUIComponents();
         inloggen();
-        //socketListener();
+        socketListener();
     }
 
     @Override
@@ -109,13 +112,15 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         socket = new Socket(IPADDRESS, PORT);
                         dataInputStream = new DataInputStream(socket.getInputStream());
-                        messageFromServer = dataInputStream.readUTF();
-                        System.out.println(messageFromServer);
+                        //messageFromServer = dataInputStream.readUTF();
+                        //System.out.println(messageFromServer);
+
+                        patientNrFromServer = dataInputStream.readInt();
 
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                createNotification();
+                                createNotification(patientNrFromServer);
                             }
 
                         });
@@ -127,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     } finally {
-                        /*if (socket != null) {
+                        if (socket != null) {
                             try {
                                 socket.close();
                             } catch (IOException e) {
@@ -141,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }*/
+                        }
                     }
 
                 }
@@ -150,13 +155,17 @@ public class MainActivity extends AppCompatActivity {
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    private void createNotification() {
+    private void createNotification(int patientNr) {
+        DbHandler handler = new DbHandler(getApplicationContext(), null, null, 1);
+
+        Patient patient = handler.findPatientBy(String.valueOf(patientNr));
+
         Intent intent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
         Notification noti = new Notification.Builder(this)
-                .setTicker("De Dermatoloog verwacht u nu.")
-                .setContentTitle("Welkom, Bruno")
-                .setContentText("Je kunt nu naar kamer 3.23 komen.")
+                .setTicker("De Dermatoloog verwacht u.")
+                .setContentTitle("Welkom, " + patient.getNaam())
+                .setContentText("U wordt verwacht in kamer 3.23.")
                 .setSmallIcon(R.drawable.artscircle)
                 .setContentIntent(pIntent).getNotification();
         noti.flags=Notification.FLAG_AUTO_CANCEL;

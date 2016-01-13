@@ -34,6 +34,11 @@ public class Ziekenhuis {
         handler.add(new Patient("Bruno Delsing", "123", 0001));
         handler.add(new Patient("Pieter Wels", "123", 0002));
         handler.add(new Patient("Henk Janssen", "123", 0003));
+        handler.add(new Patient("Jac Mensens", "123", 74523));
+        handler.add(new Patient("Frans Diedericks", "123", 74663));
+        handler.add(new Patient("Julia Davids", "123", 71123));
+        handler.add(new Patient("Robbert Janse", "123", 92113));
+        handler.add(new Patient("Francien Mensens", "123", 76166));
     }
 
     public boolean inloggen(String patientNr, String wachtwoord) {
