@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         initializeUIComponents();
         inloggen();
-        socketListener();
+        //socketListener();
     }
 
     @Override
@@ -159,6 +160,16 @@ public class MainActivity extends AppCompatActivity {
         DbHandler handler = new DbHandler(getApplicationContext(), null, null, 1);
 
         Patient patient = handler.findPatientBy(String.valueOf(patientNr));
+
+        Vibrator v = (Vibrator) this.getApplicationContext().getSystemService(getApplicationContext().VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        v.vibrate(500);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        v.vibrate(500);
 
         Intent intent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
