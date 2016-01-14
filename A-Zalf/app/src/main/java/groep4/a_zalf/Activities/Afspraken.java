@@ -31,14 +31,14 @@ import groep4.a_zalf.Protocol.Utils;
 
 public class Afspraken extends AppCompatActivity implements IBeaconListener, AdapterView.OnItemClickListener {
 
-    private Button btDiagnose, btAfspraakMaken;
+    private Button btAfspraakMaken;
 
     private static final int REQUEST_BLUETOOTH_ENABLE = 1;
 
     private static IBeacon beacon;
     private static IBeaconProtocol ibp;
 
-    private List<Afspraak> afspraken;
+    public List<Afspraak> afspraken;
 
     private ListView lvAfspraken;
 
@@ -68,7 +68,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         btAfspraakMaken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
+                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMakenMetArts.class);
                 afspraakMakenActivity.putExtra("vraagNummer", 1);
                 startActivity(afspraakMakenActivity);
             }

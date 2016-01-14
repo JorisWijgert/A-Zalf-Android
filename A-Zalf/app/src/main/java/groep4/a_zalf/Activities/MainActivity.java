@@ -4,6 +4,10 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private String messageFromServer = "leeg";
     private int patientNrFromServer = 0;
 
-    private final String IPADDRESS = "145.93.129.179";
+    private final String IPADDRESS = "145.93.129.129";
     private final int PORT = 8888;
 
     @Override
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTicker("De Dermatoloog verwacht u.")
                 .setContentTitle("Welkom, " + patient.getNaam())
                 .setContentText("U wordt verwacht in kamer 3.23.")
-                .setSmallIcon(R.drawable.artscircle)
+                .setSmallIcon(R.drawable.arts)
                 .setContentIntent(pIntent).getNotification();
         noti.flags=Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

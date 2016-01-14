@@ -11,6 +11,11 @@ public class Arts {
 
     private ArrayList<Afspraak> agenda;
 
+    public Arts(String naam) {
+        this.naam = naam;
+        this.agenda = new ArrayList();
+    }
+
     public Arts(String naam, String kamerNr) {
         this.naam = naam;
         this.kamerNr = kamerNr;
