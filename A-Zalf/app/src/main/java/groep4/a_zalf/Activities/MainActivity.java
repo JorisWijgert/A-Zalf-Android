@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         initializeUIComponents();
         inloggen();
-        //socketListener();
+        socketListener();
     }
 
     @Override
@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ziekenhuis.inloggen(etPatientNr.getText().toString(), etWachtwoord.getText().toString())) {
                     final Intent afsprakenActivity = new Intent(getApplicationContext(), Afspraken.class);
                     startActivity(afsprakenActivity);
+                    createNotification(76166);
                 } else {
                     System.out.println("patientNr of wachtwoord is fout.");
                 }
@@ -175,13 +176,16 @@ public class MainActivity extends AppCompatActivity {
         }
         v.vibrate(500);
 
-        Intent intent = new Intent();
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        final Intent afsprakenActivity = new Intent(getApplicationContext(), Afspraken.class);
+
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, afsprakenActivity, 0);
         Notification noti = new Notification.Builder(this)
+                .setCategory(Notification.CATEGORY_PROMO)
                 .setTicker("De Dermatoloog verwacht u.")
                 .setContentTitle("Welkom, " + patient.getNaam())
                 .setContentText("U wordt verwacht in kamer 3.23.")
-                .setSmallIcon(R.drawable.arts)
+                .setSmallIcon(R.drawable.artscircle)
+                .setPriority(Notification.PRIORITY_MAX)
                 .setContentIntent(pIntent).getNotification();
         noti.flags=Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

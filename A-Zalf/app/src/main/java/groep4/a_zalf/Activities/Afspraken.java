@@ -31,7 +31,6 @@ import groep4.a_zalf.Protocol.Utils;
 
 public class Afspraken extends AppCompatActivity implements IBeaconListener, AdapterView.OnItemClickListener {
 
-    private Button btAfspraakMaken;
 
     private static final int REQUEST_BLUETOOTH_ENABLE = 1;
 
@@ -57,18 +56,10 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
-        initializeUIComponents();
-
-
-        btAfspraakMaken.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMakenMetArts.class);
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
                 afspraakMakenActivity.putExtra("vraagNummer", 1);
                 startActivity(afspraakMakenActivity);
             }
@@ -88,9 +79,18 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AfspraakListAdapter ala = (AfspraakListAdapter) parent.getAdapter();
         Afspraak afspraak = ala.getItem(position);
-        Intent intent = new Intent(this, Diagnose.class);
+        Calendar tijdBegin = afspraak.getTijdstip();
+        Calendar tijdsduur = afspraak.getTijdsduur();
+        Calendar tijdEind = tijdBegin;
+        tijdEind.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
+        if (tijdEind.before(Calendar.getInstance())){
+            Intent intent = new Intent(this, Diagnose.class);
 
-        startActivity(intent);
+            startActivity(intent);
+        }else{
+            Snackbar.make(view, "De afspraak heeft nog niet plaatsgevonden.", Snackbar.LENGTH_LONG)
+                      .setAction("Action", null).show();
+        }
         //Navigate to the page from the game.
 //        Intent intent = new Intent(this, GameActivity.class);
 //        intent.putExtra("Game", game);
@@ -218,8 +218,5 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         Toast.makeText(context, "Bluetooth error: " + status, Toast.LENGTH_SHORT).show();
     }
 
-    private void initializeUIComponents() {
-        btAfspraakMaken = (Button) findViewById(R.id.btAfspraak);
-    }
 
 }

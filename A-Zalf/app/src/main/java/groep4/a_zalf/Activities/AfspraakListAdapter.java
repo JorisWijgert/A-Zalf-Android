@@ -62,13 +62,22 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
         }
         tijden.setText(endString);
         String artsNaam = reqAfspraak.getArts().getNaam();
-        arts.setText("Dermatoloog: " + artsNaam);
+        arts.setText("Dermatoloog " + artsNaam);
         switch (artsNaam){
-            case "Theodore":
-                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstheodore));
+            case "Bianca":
+                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artsbianca));
                 break;
             case "Friso":
                 icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artsfriso));
+                break;
+            case "Philips":
+                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artsphilips));
+                break;
+            case "Theodore":
+                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstheodore));
+                break;
+            default:
+                icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstrudy));
                 break;
         }
         //icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstheodore));
