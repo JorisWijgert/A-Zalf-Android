@@ -40,9 +40,7 @@ public class AfspraakArtsListAdapter extends ArrayAdapter<Arts> {
 
 
         ImageView icon = (ImageView) afspraakView.findViewById(R.id.ivIcon);
-        TextView datum = (TextView) afspraakView.findViewById(R.id.tvDatum);
-        TextView tijden = (TextView) afspraakView.findViewById(R.id.tvTijden);
-        TextView arts = (TextView) afspraakView.findViewById(R.id.tvArts);
+        TextView arts = (TextView) afspraakView.findViewById(R.id.tvTijden);
 
         String artsNaam = reqArts.getNaam();
         arts.setText("Dermatoloog " + artsNaam);

@@ -38,12 +38,17 @@ public class AfspraakMaken extends AppCompatActivity {
                 btAntwoord3.setText("Benen");
                 pbAfspraak.setProgress(0);
 
+
                 btAntwoord1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
                         afspraakMakenActivity.putExtra("Antwoord1", btAntwoord1.getText());
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         vraagNummer++;
                         afspraakMakenActivity.putExtra("vraagNummer", vraagNummer);
                         startActivity(afspraakMakenActivity);
@@ -54,7 +59,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", btAntwoord2.getText());
                         vraagNummer++;
                         afspraakMakenActivity.putExtra("vraagNummer", vraagNummer);
@@ -66,7 +75,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", btAntwoord3.getText());
                         vraagNummer++;
                         afspraakMakenActivity.putExtra("vraagNummer", vraagNummer);
@@ -87,7 +100,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", btAntwoord1.getText());
                         vraagNummer++;
@@ -100,7 +117,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", btAntwoord2.getText());
                         vraagNummer++;
@@ -113,7 +134,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", btAntwoord3.getText());
                         vraagNummer++;
@@ -136,7 +161,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", btAntwoord1.getText());
@@ -150,7 +179,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", btAntwoord2.getText());
@@ -164,7 +197,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", btAntwoord3.getText());
@@ -190,7 +227,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", a3);
@@ -205,7 +246,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", a3);
@@ -220,7 +265,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", a3);
@@ -248,7 +297,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", a3);
@@ -264,7 +317,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", a3);
@@ -280,7 +337,11 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
-                        finish();
+
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
+                        afspraakMakenActivity.putExtra("Arts", arts);
                         afspraakMakenActivity.putExtra("Antwoord1", a1);
                         afspraakMakenActivity.putExtra("Antwoord2", a2);
                         afspraakMakenActivity.putExtra("Antwoord3", a3);
@@ -301,8 +362,11 @@ public class AfspraakMaken extends AppCompatActivity {
                 a4 = (String) getIntent().getExtras().getString("Antwoord4");
                 a5 = (String) getIntent().getExtras().getString("Antwoord5");
 
+                String arts = (String) getIntent().getExtras().getString("Arts");
+                String tijd = (String) getIntent().getExtras().getString("Tijd");
+
                 pbAfspraak.setProgress(100);
-                tvVraag.setText("De volgende gegevens zijn doorgegeven: " + "\n" + a1 + "\n" + a2 + "\n" + a3 + "\n" + a4 + "\n" + a5);
+                tvVraag.setText("De volgende gegevens zijn doorgegeven: " + "\n" + "Arts: " + arts + "\n" + "op  " + tijd + "\n\n" + a1 + "\n\n" + a2 + "\n\n" + a3 + "\n\n" + a4 + "\n\n" + a5);
                 btAntwoord1.setText("Afspraak afronden");
                 btAntwoord2.setVisibility(View.INVISIBLE);
                 btAntwoord3.setVisibility(View.INVISIBLE);
@@ -310,7 +374,10 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), Afspraken.class);
-                        finish();
+                        String arts = (String) getIntent().getExtras().getString("Arts");
+                        afspraakMakenActivity.putExtra("Arts", arts);
+                        String tijd = (String) getIntent().getExtras().getString("Tijd");
+                        afspraakMakenActivity.putExtra("Tijd", tijd);
                         startActivity(afspraakMakenActivity);
                     }
                 });
@@ -321,12 +388,11 @@ public class AfspraakMaken extends AppCompatActivity {
                 btAntwoord2.setText("Romp");
                 btAntwoord3.setText("Benen");
                 pbAfspraak.setProgress(0);
-
                 btAntwoord1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), Afspraken.class);
-                        finish();
+
                         afspraakMakenActivity.putExtra("Antwoord1", btAntwoord1.getText());
                         vraagNummer++;
                         afspraakMakenActivity.putExtra("vraagNummer", vraagNummer);
@@ -338,7 +404,7 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), Afspraken.class);
-                        finish();
+
                         afspraakMakenActivity.putExtra("Antwoord1", btAntwoord2.getText());
                         vraagNummer++;
                         afspraakMakenActivity.putExtra("vraagNummer", vraagNummer);
@@ -350,7 +416,7 @@ public class AfspraakMaken extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), Afspraken.class);
-                        finish();
+
                         afspraakMakenActivity.putExtra("Antwoord1", btAntwoord3.getText());
                         vraagNummer++;
                         afspraakMakenActivity.putExtra("vraagNummer", vraagNummer);

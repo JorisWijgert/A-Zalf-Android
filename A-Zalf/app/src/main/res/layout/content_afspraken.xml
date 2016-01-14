@@ -10,8 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_afspraken" tools:context="groep4.a_zalf.Activities.Afspraken">
-    
-
 
     <ListView
         android:id="@+id/listViewAfspraken"

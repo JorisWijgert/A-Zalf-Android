@@ -43,6 +43,9 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 
     Activity context = this;
 
+    private String arts;
+    private String tijd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,16 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 
         afspraken = new ArrayList();
 
+        try{
+            arts = (String) getIntent().getExtras().getString("Arts");
+            tijd = (String) getIntent().getExtras().getString("Tijd");
+        }catch(Exception e)
+        {
+
+        }
+
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +72,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
+                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMakenMetArts.class);
+                finish();
                 afspraakMakenActivity.putExtra("vraagNummer", 1);
                 startActivity(afspraakMakenActivity);
             }
@@ -115,14 +129,22 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         startDate1.add(Calendar.MINUTE, 15);
         Calendar timeLength = Calendar.getInstance();
         SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:ss");
+
         try {
             timeLength.setTime(sdf1.parse("00:30:00"));
             afspraken.add(new Afspraak(startDate0, timeLength, a2, p, i));
             afspraken.add(new Afspraak(startDate1, timeLength, a, p, i));
-
             Calendar startDate2 = Calendar.getInstance();
             startDate2.add(Calendar.HOUR, 2);
             afspraken.add(new Afspraak(startDate2, timeLength, a, p, i));
+            if(arts !=null && tijd != null) {
+                Calendar startDate3 = Calendar.getInstance();
+                startDate3.add(Calendar.DAY_OF_MONTH, 1);
+                startDate3.set(Calendar.HOUR_OF_DAY, Integer.parseInt(tijd.substring(0, 2)));
+                startDate3.set(Calendar.MINUTE, Integer.parseInt(tijd.substring(3, 5)));
+                afspraken.add(new Afspraak(startDate3, timeLength, new Arts(arts), p, i));
+                return;
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
