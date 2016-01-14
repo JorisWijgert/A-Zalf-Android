@@ -28,7 +28,6 @@ public class Afspraak {
 
     public void setDiagnose(Diagnose diagnose) {
         this.diagnose = diagnose;
-
     }
 
     public Arts getArts(){return arts;}

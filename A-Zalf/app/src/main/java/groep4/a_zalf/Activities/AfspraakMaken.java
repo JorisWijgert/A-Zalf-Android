@@ -60,6 +60,7 @@ public class AfspraakMaken extends AppCompatActivity {
                     public void onClick(View v) {
                         final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
 
+
                         String arts = (String) getIntent().getExtras().getString("Arts");
                         String tijd = (String) getIntent().getExtras().getString("Tijd");
                         afspraakMakenActivity.putExtra("Tijd", tijd);
