@@ -17,6 +17,8 @@ public class Arts {
         this.agenda = new ArrayList();
     }
 
+    public String getNaam(){return naam;}
+
     public void add(Afspraak afspraak) {
         agenda.add(afspraak);
 

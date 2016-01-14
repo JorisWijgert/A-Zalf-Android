@@ -64,13 +64,6 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 
         initializeUIComponents();
 
-        btDiagnose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent diagnoseActivity = new Intent(getApplicationContext(), Diagnose.class);
-                startActivity(diagnoseActivity);
-            }
-        });
 
         btAfspraakMaken.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +88,9 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AfspraakListAdapter ala = (AfspraakListAdapter) parent.getAdapter();
         Afspraak afspraak = ala.getItem(position);
+        Intent intent = new Intent(this, Diagnose.class);
 
+        startActivity(intent);
         //Navigate to the page from the game.
 //        Intent intent = new Intent(this, GameActivity.class);
 //        intent.putExtra("Game", game);
@@ -110,16 +105,19 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     }
 
     private void makeAfspraken() {
-        Arts a = new Arts("Henk Janssen", "12");
+        Arts a = new Arts("Theodore", "12");
+        Arts a2 = new Arts("Friso", "13");
         Patient p = new Patient("Harrie", "001", 12);
         Informatie i = new Informatie("Er zitten vreemde plekken op mijn been");
-
+        Calendar startDate0 = Calendar.getInstance();
+        startDate0.add(Calendar.DAY_OF_MONTH, -1);
         Calendar startDate1 = Calendar.getInstance();
         startDate1.add(Calendar.MINUTE, 15);
         Calendar timeLength = Calendar.getInstance();
         SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:ss");
         try {
             timeLength.setTime(sdf1.parse("00:30:00"));
+            afspraken.add(new Afspraak(startDate0, timeLength, a2, p, i));
             afspraken.add(new Afspraak(startDate1, timeLength, a, p, i));
 
             Calendar startDate2 = Calendar.getInstance();
@@ -221,7 +219,6 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     }
 
     private void initializeUIComponents() {
-        btDiagnose = (Button) findViewById(R.id.btDiagnose);
         btAfspraakMaken = (Button) findViewById(R.id.btAfspraak);
     }
 
