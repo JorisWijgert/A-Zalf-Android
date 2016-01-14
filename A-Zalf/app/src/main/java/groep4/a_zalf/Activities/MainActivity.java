@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentTitle("Welkom, " + patient.getNaam())
                 .setContentText("U wordt verwacht in kamer 3.23.")
                 .setSmallIcon(R.drawable.artscircle)
-                .setPriority(Notification.PRIORITY_HIGH)
+                .setPriority(Notification.PRIORITY_MAX)
                 .setContentIntent(pIntent).getNotification();
         noti.flags=Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
