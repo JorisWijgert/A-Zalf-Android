@@ -18,6 +18,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="57dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Afspraak maken"
+        android:id="@+id/btAfspraak"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

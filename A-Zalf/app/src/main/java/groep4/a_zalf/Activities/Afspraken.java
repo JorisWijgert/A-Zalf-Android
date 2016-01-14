@@ -31,7 +31,7 @@ import groep4.a_zalf.Protocol.Utils;
 
 public class Afspraken extends AppCompatActivity implements IBeaconListener, AdapterView.OnItemClickListener {
 
-    private Button btDiagnose;
+    private Button btDiagnose, btAfspraakMaken;
 
     private static final int REQUEST_BLUETOOTH_ENABLE = 1;
 
@@ -71,6 +71,16 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
                 startActivity(diagnoseActivity);
             }
         });
+
+        btAfspraakMaken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
+                afspraakMakenActivity.putExtra("vraagNummer", 1);
+                startActivity(afspraakMakenActivity);
+            }
+        });
+
         setUpIBeacon();
         makeAfspraken();
         AfspraakListAdapter ala = new AfspraakListAdapter(getApplicationContext(), afspraken);
@@ -212,6 +222,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
 
     private void initializeUIComponents() {
         btDiagnose = (Button) findViewById(R.id.btDiagnose);
+        btAfspraakMaken = (Button) findViewById(R.id.btAfspraak);
     }
 
 }
