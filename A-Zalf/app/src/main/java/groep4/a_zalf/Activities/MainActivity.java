@@ -6,14 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.content.SharedPreferences;
-=======
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
->>>>>>> origin/master
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -235,20 +228,6 @@ public class MainActivity extends AppCompatActivity {
                     .setContentIntent(pIntent).getNotification();
         }
 
-<<<<<<< HEAD
-        //noti.flags=Notification.FLAG_AUTO_CANCEL;
-=======
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, afsprakenActivity, 0);
-        Notification noti = new Notification.Builder(this)
-                .setCategory(Notification.CATEGORY_PROMO)
-                .setTicker("De Dermatoloog verwacht u.")
-                .setContentTitle("Welkom, " + patient.getNaam())
-                .setContentText("U wordt verwacht in kamer 3.23.")
-                .setSmallIcon(R.drawable.artscircle)
-                .setPriority(Notification.PRIORITY_MAX)
-                .setContentIntent(pIntent).getNotification();
-        noti.flags=Notification.FLAG_AUTO_CANCEL;
->>>>>>> origin/master
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, noti);
     }
