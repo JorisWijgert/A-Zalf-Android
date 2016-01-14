@@ -13,23 +13,24 @@ import java.util.Calendar;
 import java.util.List;
 
 import groep4.a_zalf.Collection.Afspraak;
+import groep4.a_zalf.Collection.Arts;
 import groep4.a_zalf.R;
 
 /**
  * Created by jvdwi on 8-1-2016.
  */
-public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
+public class AfspraakArtsListAdapter extends ArrayAdapter<Arts> {
     private Context context;
-    private List<Afspraak> afspraken;
+    private List<Arts> artsen;
 
-    public AfspraakListAdapter(Context context, List<Afspraak> afspraken) {
-        super(context, R.layout.activity_afspraken, afspraken);
-        this.afspraken = afspraken;
+    public AfspraakArtsListAdapter(Context context, List<Arts> artsen) {
+        super(context, R.layout.activity_afspraken, artsen);
+        this.artsen = artsen;
         this.context = context;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        Afspraak reqAfspraak = afspraken.get(position);
+        Arts reqArts = artsen.get(position);
         View afspraakView = convertView;
 
         if (afspraakView == null) {
@@ -42,26 +43,8 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
         TextView datum = (TextView) afspraakView.findViewById(R.id.tvDatum);
         TextView tijden = (TextView) afspraakView.findViewById(R.id.tvTijden);
         TextView arts = (TextView) afspraakView.findViewById(R.id.tvArts);
-        Calendar tijdstip = reqAfspraak.getTijdstip();
-        Calendar tijdsduur = reqAfspraak.getTijdsduur();
-        tijdstip.add(Calendar.MINUTE, -25);
-        String beginString = "";
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
-        if (tijdstip != null) {
-            beginString += sdf1.format(tijdstip.getTime());
-        }
-        datum.setText(beginString);
 
-        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-        Calendar returnCal = tijdstip;
-        String endString = "";
-        if (returnCal != null) {
-            endString += sdf2.format(tijdstip.getTime()) + " - ";
-            returnCal.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
-            endString += sdf2.format(returnCal.getTime());
-        }
-        tijden.setText(endString);
-        String artsNaam = reqAfspraak.getArts().getNaam();
+        String artsNaam = reqArts.getNaam();
         arts.setText("Dermatoloog " + artsNaam);
         switch (artsNaam){
             case "Bianca":
@@ -80,12 +63,6 @@ public class AfspraakListAdapter extends ArrayAdapter<Afspraak> {
                 icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstrudy));
                 break;
         }
-        //icon.setImageDrawable(this.getContext().getResources().getDrawable(R.drawable.artstheodore));
-//
-//        beginDate.setText(reqAfspraak.getBeginDateString());
-//
-//
-//        endDate.setText(reqAfspraak.getEndDateString());
 
         return afspraakView;
     }

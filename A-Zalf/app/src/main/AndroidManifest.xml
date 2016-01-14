@@ -42,6 +42,10 @@
         </activity>
         <activity android:name=".Activities.AfspraakMaken" >
         </activity>
+        <activity android:name=".Activities.AfspraakMakenArts" >
+        </activity>
+        <activity android:name=".Activities.AfspraakMakenMetArts" >
+        </activity>
     </application>
 
 </manifest>

@@ -31,14 +31,13 @@ import groep4.a_zalf.Protocol.Utils;
 
 public class Afspraken extends AppCompatActivity implements IBeaconListener, AdapterView.OnItemClickListener {
 
-    private Button btDiagnose, btAfspraakMaken;
 
     private static final int REQUEST_BLUETOOTH_ENABLE = 1;
 
     private static IBeacon beacon;
     private static IBeaconProtocol ibp;
 
-    private List<Afspraak> afspraken;
+    public List<Afspraak> afspraken;
 
     private ListView lvAfspraken;
 
@@ -57,6 +56,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
                 final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
@@ -79,9 +79,18 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AfspraakListAdapter ala = (AfspraakListAdapter) parent.getAdapter();
         Afspraak afspraak = ala.getItem(position);
-        Intent intent = new Intent(this, Diagnose.class);
+        Calendar tijdBegin = afspraak.getTijdstip();
+        Calendar tijdsduur = afspraak.getTijdsduur();
+        Calendar tijdEind = tijdBegin;
+        tijdEind.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
+        if (tijdEind.before(Calendar.getInstance())){
+            Intent intent = new Intent(this, Diagnose.class);
 
-        startActivity(intent);
+            startActivity(intent);
+        }else{
+            Snackbar.make(view, "De afspraak heeft nog niet plaatsgevonden.", Snackbar.LENGTH_LONG)
+                      .setAction("Action", null).show();
+        }
         //Navigate to the page from the game.
 //        Intent intent = new Intent(this, GameActivity.class);
 //        intent.putExtra("Game", game);

@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="groep4.a_zalf.Activities.Afspraken"
-    tools:showIn="@layout/activity_afspraken">
+    tools:showIn="@layout/activity_afspraken" tools:context="groep4.a_zalf.Activities.Afspraken">
+    
 
 
     <ListView
