@@ -62,15 +62,6 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
             }
         });
 
-        initializeUIComponents();
-
-        btDiagnose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent diagnoseActivity = new Intent(getApplicationContext(), Diagnose.class);
-                startActivity(diagnoseActivity);
-            }
-        });
         setUpIBeacon();
         makeAfspraken();
         AfspraakListAdapter ala = new AfspraakListAdapter(getApplicationContext(), afspraken);
@@ -85,7 +76,9 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AfspraakListAdapter ala = (AfspraakListAdapter) parent.getAdapter();
         Afspraak afspraak = ala.getItem(position);
+        Intent intent = new Intent(this, Diagnose.class);
 
+        startActivity(intent);
         //Navigate to the page from the game.
 //        Intent intent = new Intent(this, GameActivity.class);
 //        intent.putExtra("Game", game);
@@ -211,10 +204,6 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void operationError(int status) {
 
         Toast.makeText(context, "Bluetooth error: " + status, Toast.LENGTH_SHORT).show();
-    }
-
-    private void initializeUIComponents() {
-        btDiagnose = (Button) findViewById(R.id.btDiagnose);
     }
 
 }
