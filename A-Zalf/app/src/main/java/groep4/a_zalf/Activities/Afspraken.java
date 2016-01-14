@@ -117,7 +117,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         Calendar tijdEind = tijdBegin;
         tijdEind.add(Calendar.MINUTE, tijdsduur.get(Calendar.MINUTE));
         if (tijdEind.before(Calendar.getInstance())){
-            
+
             Intent intent = new Intent(this, Diagnose.class);
 
             startActivity(intent);

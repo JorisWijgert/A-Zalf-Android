@@ -91,8 +91,8 @@ public class AfspraakMaken extends AppCompatActivity {
             case 2:
                 tvVraag.setText("Hoe ziet de aandoening eruit ?");
                 btAntwoord1.setText("Glad");
-                btAntwoord2.setText("Hobbeltjes");
-                btAntwoord3.setText("._.");
+                btAntwoord2.setText("Gebold");
+                btAntwoord3.setText("Inkepingen");
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 btAntwoord3.setText(a1);
                 pbAfspraak.setProgress(20);
@@ -152,10 +152,10 @@ public class AfspraakMaken extends AppCompatActivity {
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
 
-                tvVraag.setText("Dit is vraag 3");
-                btAntwoord1.setText(a1);
-                btAntwoord2.setText(a2);
-                btAntwoord3.setText("X3");
+                tvVraag.setText("Wat is de duratie van het probleem ?");
+                btAntwoord1.setText("1 dag");
+                btAntwoord2.setText("1 week");
+                btAntwoord3.setText("Langer dan 1 week");
                 pbAfspraak.setProgress(40);
 
                 btAntwoord1.setOnClickListener(new View.OnClickListener() {
@@ -218,10 +218,10 @@ public class AfspraakMaken extends AppCompatActivity {
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
                 a3 = (String) getIntent().getExtras().getString("Antwoord3");
 
-                tvVraag.setText("Dit is vraag 4");
-                btAntwoord1.setText(a1);
-                btAntwoord2.setText(a2);
-                btAntwoord3.setText(a3);
+                tvVraag.setText("Gebruikt u medicatie die het probleem kan veroorzaken ?");
+                btAntwoord1.setText("Ja");
+                btAntwoord2.setText("Nee");
+                btAntwoord3.setText("Ik gebruik geen medicatie");
                 pbAfspraak.setProgress(60);
 
                 btAntwoord1.setOnClickListener(new View.OnClickListener() {
@@ -288,10 +288,10 @@ public class AfspraakMaken extends AppCompatActivity {
                 a3 = (String) getIntent().getExtras().getString("Antwoord3");
                 a4 = (String) getIntent().getExtras().getString("Antwoord4");
 
-                tvVraag.setText("Dit is vraag 5");
-                btAntwoord1.setText("ABC 5.1");
-                btAntwoord2.setText("ABC 5.2");
-                btAntwoord3.setText("ABC 5.3");
+                tvVraag.setText("Welke klachten heeft u m.b.t. uw probleem ?");
+                btAntwoord1.setText("Jeuk");
+                btAntwoord2.setText("Irritatie");
+                btAntwoord3.setText("Pijn");
                 pbAfspraak.setProgress(80);
 
                 btAntwoord1.setOnClickListener(new View.OnClickListener() {
