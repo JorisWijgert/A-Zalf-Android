@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private String messageFromServer = "leeg";
     private int patientNrFromServer = 0;
 
-    private final String IPADDRESS = "145.93.129.179";
+    private final String IPADDRESS = "145.93.129.129";
     private final int PORT = 8888;
 
     @Override
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         initializeUIComponents();
         inloggen();
-        //socketListener();
+        socketListener();
     }
 
     @Override
@@ -174,10 +174,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
         Notification noti = new Notification.Builder(this)
+                .setCategory(Notification.CATEGORY_PROMO)
                 .setTicker("De Dermatoloog verwacht u.")
                 .setContentTitle("Welkom, " + patient.getNaam())
                 .setContentText("U wordt verwacht in kamer 3.23.")
                 .setSmallIcon(R.drawable.artscircle)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(pIntent).getNotification();
         noti.flags=Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
