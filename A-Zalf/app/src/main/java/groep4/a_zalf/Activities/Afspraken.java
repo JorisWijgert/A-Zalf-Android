@@ -2,7 +2,10 @@ package groep4.a_zalf.Activities;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +18,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +31,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import groep4.a_zalf.Collection.*;
+import groep4.a_zalf.Database.DbHandler;
 import groep4.a_zalf.R;
 import groep4.a_zalf.Protocol.IBeacon;
 import groep4.a_zalf.Protocol.IBeaconListener;
@@ -42,6 +52,16 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     private ListView lvAfspraken;
 
     Activity context = this;
+
+    //Sockets
+    private final String IPADDRESS = "145.93.129.129";
+    private final int PORT = 8887;
+
+    private DataOutputStream dataOutputStream = null;
+    private Socket socket;
+
+    private DbHandler handler;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +208,15 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         beacon = ibeacon;
         //TODO: THINGS WHEN BEACON FOUND
         if (beacon.getUuidHexStringDashed().equals("F7826DA6-4FA2-4E98-8024-BC5B71E0893E")) {
+
+            preferences = getSharedPreferences("patient", Context.MODE_PRIVATE);
+            String patientNr = preferences.getString("patientKey", null);
+            handler = new DbHandler(getApplicationContext(), null, null, 1);
+
+            Patient patient = handler.findPatientBy(patientNr);
+
+            socketSender(patient.getNaam());
+
             final Intent suggestiesActivity = new Intent(getApplicationContext(), Suggesties.class);
             startActivity(suggestiesActivity);
         }
@@ -216,6 +245,53 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     public void operationError(int status) {
 
         Toast.makeText(context, "Bluetooth error: " + status, Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void socketSender(final String naam) {
+        new AsyncTask<Void, Void, Void>() {
+            boolean loop = true;
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                while(loop) {
+
+                    dataOutputStream = null;
+
+                    try {
+                        socket = new Socket(IPADDRESS, PORT);
+                        dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+                        dataOutputStream.writeUTF(naam);
+
+                    } catch (UnknownHostException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } finally {
+                        if (socket != null) {
+                            try {
+                                socket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        if (dataOutputStream != null) {
+                            try {
+                                dataOutputStream.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                }
+                return null;
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
 
