@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import groep4.a_zalf.Collection.Diagnose;
 import groep4.a_zalf.Collection.Patient;
 
 /**
@@ -23,6 +24,13 @@ public class DbHandler extends SQLiteOpenHelper {
     public static final String COLUMN_GEBOORTEDATUM = "geboorteDatum";
     public static final String COLUMN_WACHTWOORD = "wachtwoord";
 
+    private static final String TABLE_DIAGNOSE = "diagnose";
+
+    public static final String COLUMN_DIAGNOSE = "diagnose";
+    public static final String COLUMN_PRESCRIPTIE = "prescriptie";
+    public static final String COLUMN_INNAME = "inname";
+
+
     public DbHandler(Context context, String name,
                      SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -38,11 +46,21 @@ public class DbHandler extends SQLiteOpenHelper {
                 + COLUMN_GEBOORTEDATUM + " TEXT,"
                 + COLUMN_WACHTWOORD + " TEXT" + ")";
         db.execSQL(CREATE_PATIENTEN_TABLE);
+
+        String CREATE_DIAGNOSE_TABLE = "CREATE TABLE " +
+                TABLE_DIAGNOSE + "("
+                + COLUMN_ID + " INTEGER PRIMARY KEY,"
+                + COLUMN_PATIENTNR + " INTEGER,"
+                + COLUMN_DIAGNOSE + " TEXT,"
+                + COLUMN_PRESCRIPTIE + " TEXT,"
+                + COLUMN_INNAME + " TEXT" + ")";
+        db.execSQL(CREATE_DIAGNOSE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATIENTEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIAGNOSE);
         onCreate(db);
     }
 
@@ -59,6 +77,20 @@ public class DbHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addDiagnose(String diagnose, String prescriptie, String inname, int patientNr) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PATIENTNR, patientNr);
+        values.put(COLUMN_DIAGNOSE, diagnose);
+        values.put(COLUMN_PRESCRIPTIE, prescriptie);
+        values.put(COLUMN_INNAME, inname);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_DIAGNOSE, null, null);
+
+        db.insert(TABLE_DIAGNOSE, null, values);
+        db.close();
+    }
+
     public boolean isEmpty(String TABLE_NAME) {
         String query = "SELECT count(*) FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -66,6 +98,26 @@ public class DbHandler extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         return cursor.getInt(0) > 0;
+    }
+
+    public Diagnose findDiagnoseBy(String patientNr) {
+        Diagnose diagnose;
+        String query = "Select * FROM " + TABLE_DIAGNOSE + " WHERE " + COLUMN_PATIENTNR + " = " + patientNr;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                diagnose =  new Diagnose(cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                cursor.close();
+                return diagnose;
+            } else {
+                return null;
+            }
+        } finally {
+            db.close();
+        }
     }
 
     public boolean findPatientBy(String patientNr, String wachtwoord) {

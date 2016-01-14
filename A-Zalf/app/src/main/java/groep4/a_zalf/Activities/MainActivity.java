@@ -1,10 +1,14 @@
 package groep4.a_zalf.Activities;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private Ziekenhuis ziekenhuis;
     private Toolbar tbInloggen;
 
+    private DbHandler handler;
+    private SharedPreferences preferences;
+
     //Socktes
     private DataInputStream dataInputStream = null;
     private Socket socket;
@@ -55,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         tbInloggen = (Toolbar) findViewById(R.id.toolbar);
         this.setSupportActionBar(tbInloggen);
         getSupportActionBar().setTitle("A-Zalf");
+
+        handler = new DbHandler(getApplicationContext(), null, null, 1);
+        preferences = getSharedPreferences("patient", Context.MODE_PRIVATE);
 
         ziekenhuis = new Ziekenhuis(true, getApplicationContext());
 
@@ -90,9 +100,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (ziekenhuis.inloggen(etPatientNr.getText().toString(), etWachtwoord.getText().toString())) {
+
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("patientKey", etPatientNr.getText().toString());
+                    editor.commit();
+
                     final Intent afsprakenActivity = new Intent(getApplicationContext(), Afspraken.class);
                     startActivity(afsprakenActivity);
-                    createNotification(76166);
                 } else {
                     System.out.println("patientNr of wachtwoord is fout.");
                 }
@@ -117,15 +131,32 @@ public class MainActivity extends AppCompatActivity {
                         //messageFromServer = dataInputStream.readUTF();
                         //System.out.println(messageFromServer);
 
-                        patientNrFromServer = dataInputStream.readInt();
+                        messageFromServer = dataInputStream.readUTF();
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                createNotification(patientNrFromServer);
-                            }
+                        if (messageFromServer.matches("[0-9]+")) {
+                            patientNrFromServer = Integer.valueOf(messageFromServer);
 
-                        });
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    createNotification(patientNrFromServer, "binnenkomen");
+                                }
+                            });
+                        } else {
+                            String[] diagnoseStr = messageFromServer.split("@");
+
+                            handler.addDiagnose(diagnoseStr[0], diagnoseStr[1], diagnoseStr[2], patientNrFromServer);
+                            System.out.println("Diagnose toegevoegd.");
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    createNotification(patientNrFromServer, "niet binnenkomen");
+                                }
+                            });
+                        }
+
+                        //patientNrFromServer = dataInputStream.readInt();
 
                     } catch (UnknownHostException e) {
                         // TODO Auto-generated catch block
@@ -157,9 +188,8 @@ public class MainActivity extends AppCompatActivity {
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    private void createNotification(int patientNr) {
-        DbHandler handler = new DbHandler(getApplicationContext(), null, null, 1);
-
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void createNotification(int patientNr, String binnekomen) {
         Patient patient = handler.findPatientBy(String.valueOf(patientNr));
 
         Vibrator v = (Vibrator) this.getApplicationContext().getSystemService(getApplicationContext().VIBRATOR_SERVICE);
@@ -173,17 +203,32 @@ public class MainActivity extends AppCompatActivity {
         v.vibrate(500);
 
         final Intent afsprakenActivity = new Intent(getApplicationContext(), Afspraken.class);
+        final Intent diagnoseActivity = new Intent(getApplicationContext(), Diagnose.class);
+        Notification noti;
 
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, afsprakenActivity, 0);
-        Notification noti = new Notification.Builder(this)
-                .setCategory(Notification.CATEGORY_PROMO)
-                .setTicker("De Dermatoloog verwacht u.")
-                .setContentTitle("Welkom, " + patient.getNaam())
-                .setContentText("U wordt verwacht in kamer 3.23.")
-                .setSmallIcon(R.drawable.artscircle)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setContentIntent(pIntent).getNotification();
-        noti.flags=Notification.FLAG_AUTO_CANCEL;
+        if (binnekomen.equals("binnenkomen")) {
+            PendingIntent pIntent = PendingIntent.getActivity(this, 0, afsprakenActivity, 0);
+            noti = new Notification.Builder(this)
+                    .setCategory(Notification.CATEGORY_PROMO)
+                    .setTicker("De Dermatoloog verwacht u.")
+                    .setContentTitle("Welkom, " + patient.getNaam())
+                    .setContentText("U wordt verwacht in kamer 3.23.")
+                    .setSmallIcon(R.drawable.artsgroot)
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setContentIntent(pIntent).getNotification();
+        } else {
+            PendingIntent pIntent = PendingIntent.getActivity(this, 0, diagnoseActivity, 0);
+            noti = new Notification.Builder(this)
+                    .setCategory(Notification.CATEGORY_PROMO)
+                    .setTicker("De dermatoloog heeft u een diagnose gestuurd")
+                    .setContentTitle("Diagnose")
+                    .setContentText("De dermatoloog heeft u een diagnoseartsgroot.png gestuurd")
+                    .setSmallIcon(R.drawable.artsgroot)
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setContentIntent(pIntent).getNotification();
+        }
+
+        //noti.flags=Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, noti);
     }

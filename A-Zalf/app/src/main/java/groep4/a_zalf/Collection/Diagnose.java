@@ -8,14 +8,20 @@ import java.util.Date;
  */
 public class Diagnose {
 
-    private String beschrijving, qrCode, prescriptie;
+    private String beschrijving, qrCode, prescriptie, inname;
 
     private ArrayList<Date> reminders;
 
-    public Diagnose(String beschrijving, String qrCode) {
+    public Diagnose(String beschrijving, String prescriptie) {
         this.beschrijving = beschrijving;
         this.qrCode = qrCode;
         this.reminders = null;
+    }
+
+    public Diagnose(String beschrijving, String prescriptie, String inname) {
+        this.beschrijving = beschrijving;
+        this.prescriptie = prescriptie;
+        this.inname = inname;
     }
 
     public Diagnose(String beschrijving, String qrCode, ArrayList<Date> reminders) {
@@ -24,11 +30,7 @@ public class Diagnose {
         this.reminders = reminders;
     }
 
-    public Diagnose(String beschrijving, String qrCode, String prescriptie) {
-        this.beschrijving = beschrijving;
-        this.qrCode = qrCode;
-        this.prescriptie = prescriptie;
-    }
+    public String getInname() {return this.inname; }
 
     public String getPrescriptie() { return this.prescriptie; }
 
