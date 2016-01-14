@@ -57,17 +57,8 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        initializeUIComponents();
-
-
-        btAfspraakMaken.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
                 final Intent afspraakMakenActivity = new Intent(getApplicationContext(), AfspraakMaken.class);
                 afspraakMakenActivity.putExtra("vraagNummer", 1);
                 startActivity(afspraakMakenActivity);
@@ -218,8 +209,5 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         Toast.makeText(context, "Bluetooth error: " + status, Toast.LENGTH_SHORT).show();
     }
 
-    private void initializeUIComponents() {
-        btAfspraakMaken = (Button) findViewById(R.id.btAfspraak);
-    }
 
 }
