@@ -56,7 +56,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     private String arts;
     private String tijd;
     //Sockets
-    private final String IPADDRESS = "145.93.129.129";
+    private final String IPADDRESS = "145.93.133.1";
     private final int PORT = 8887;
 
     private DataOutputStream dataOutputStream = null;

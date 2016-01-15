@@ -26,45 +26,11 @@ public class PhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo);
         pictures = new ArrayList<>();
         phActivity = this;
-        final ImageView fullScreenContainer = (ImageView) this.findViewById(R.id.full_screen_container);
         ivImage1 = (ImageView) this.findViewById(R.id.ivImage1);
-        ivImage1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (ivImage1.getDrawable() == null) {
-                        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent, 0);
 
-                    } else {
-                        fullScreenContainer.setImageDrawable(ivImage1.getDrawable());
-                        fullScreenContainer.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
         ivImage2 = (ImageView) this.findViewById(R.id.ivImage2);
-        ivImage2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (ivImage2.getDrawable() == null) {
-                        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent, 0);
-                    } else {
-                        fullScreenContainer.setImageDrawable(ivImage2.getDrawable());
-                        fullScreenContainer.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
-        fullScreenContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fullScreenContainer.setImageDrawable(ivImage2.getDrawable());
-                fullScreenContainer.setVisibility(View.GONE);
-            }
-        });
+
+
     }
 
     public void continueClick(View view) {
@@ -85,13 +51,22 @@ public class PhotoActivity extends AppCompatActivity {
 
         Bitmap bp = (Bitmap) data.getExtras().get("data");
 
-        if (ivImage1.getDrawable() == null) {
+        if (ivImage1.getDrawable() == null && ivImage2.getDrawable() == null) {
             ivImage1.setImageBitmap(bp);
             ivImage1.setBackground(null);
-        } else if (ivImage2.getDrawable() == null) {
             ivImage2.setImageBitmap(bp);
             ivImage2.setBackground(null);
         }
         pictures.add(bp);
+    }
+
+    public void makePhotos(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ivImage1.getDrawable() == null && ivImage2.getDrawable() == null) {
+                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 0);
+            }
+
+        }
     }
 }
