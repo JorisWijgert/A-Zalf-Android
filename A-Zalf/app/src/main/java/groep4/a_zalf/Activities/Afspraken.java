@@ -56,7 +56,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
     private String arts;
     private String tijd;
     //Sockets
-    private final String IPADDRESS = "145.93.133.1";
+    private final String IPADDRESS = "145.93.164.43";
     private final int PORT = 8887;
 
     private DataOutputStream dataOutputStream = null;
@@ -236,7 +236,7 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
         //TODO: THINGS WHEN BEACON FOUND
         if (beacon.getUuidHexStringDashed().equals("F7826DA6-4FA2-4E98-8024-BC5B71E0893E")) {
             try {
-                Thread.sleep(60000);
+
                 preferences = getSharedPreferences("patient", Context.MODE_PRIVATE);
                 String patientNr = preferences.getString("patientKey", null);
                 handler = new DbHandler(getApplicationContext(), null, null, 1);
@@ -244,10 +244,9 @@ public class Afspraken extends AppCompatActivity implements IBeaconListener, Ada
                 Patient patient = handler.findPatientBy(patientNr);
 
                 socketSender(patient.getNaam());
-
                 final Intent suggestiesActivity = new Intent(getApplicationContext(), Suggesties.class);
                 startActivity(suggestiesActivity);
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

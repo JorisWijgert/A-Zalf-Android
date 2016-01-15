@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private String messageFromServer = "leeg";
     private int patientNrFromServer = 0;
 
-    private final String IPADDRESS = "145.93.129.77";
+    private final String IPADDRESS = "145.93.164.43";
     private final int PORT = 8888;
 
     @Override

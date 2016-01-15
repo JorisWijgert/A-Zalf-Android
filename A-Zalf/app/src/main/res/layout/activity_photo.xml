@@ -47,10 +47,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/ivImage1"
-            android:layout_marginTop="100dp"
+            android:layout_below="@+id/btNewPhoto"
+            android:layout_marginTop="200dp"
             android:onClick="continueClick"
-            android:text="Verder" />
+            android:background="@drawable/verderbutton"/>
 
 
     </RelativeLayout>
