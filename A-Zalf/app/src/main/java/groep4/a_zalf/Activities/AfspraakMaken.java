@@ -162,7 +162,7 @@ public class AfspraakMaken extends AppCompatActivity {
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
 
-                tvVraag.setText("Wat is de duratie van het probleem ?");
+                tvVraag.setText("Hoelang loopt u ongeveer al rond met het probleem ?");
                 btAntwoord1.setText("1 dag");
                 btAntwoord2.setText("1 week");
                 btAntwoord3.setText("Langer dan 1 week");
