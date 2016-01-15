@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                     .setCategory(Notification.CATEGORY_PROMO)
                     .setTicker("De dermatoloog heeft u een diagnose gestuurd")
                     .setContentTitle("Diagnose")
-                    .setContentText("De dermatoloog heeft u een diagnoseartsgroot.png gestuurd")
+                    .setContentText("De dermatoloog heeft u een diagnose gestuurd")
                     .setSmallIcon(R.drawable.artsgroot)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setContentIntent(pIntent).getNotification();

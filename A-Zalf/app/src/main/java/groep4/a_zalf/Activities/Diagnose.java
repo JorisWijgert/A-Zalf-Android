@@ -38,8 +38,8 @@ public class Diagnose extends AppCompatActivity {
 
         String patientNr = preferences.getString("patientKey", null);
         System.out.println("patientnr: " + patientNr);
-
-        groep4.a_zalf.Collection.Diagnose diagnose = handler.findDiagnoseBy(patientNr);
+try {
+    groep4.a_zalf.Collection.Diagnose diagnose = handler.findDiagnoseBy(patientNr);
 
         //groep4.a_zalf.Collection.Diagnose diagnose = new groep4.a_zalf.Collection.Diagnose("Na direct contact met de brandharen kan binnen 8 uur een rode pijnlijke huiduitslag met hevige jeuk ontstaan, die zich kenmerkt door bultjes, pukkeltjes of met vochtgevulde blaasjes die kunnen gaan ontsteken. Vaak ontstaan deze reacties op de onbedekte huid, maar door versleping met bijvoorbeeld zweet kan dit ook plaatsvinden op de bedekte huid.", "Prednison. \n\nDrie maal daags om de 2 uur innemen.");
 
@@ -49,6 +49,9 @@ public class Diagnose extends AppCompatActivity {
 
         tvDiagnose.setText(diagnose.getBeschrijving());
         tvPrescriptie.setText(diagnose.getPrescriptie() + "\n\n" + diagnose.getInname());
+}catch(Exception e){
+    finish();
+}
     }
 
     private void initializeUIComponents() {
