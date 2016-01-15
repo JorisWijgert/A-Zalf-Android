@@ -27,8 +27,23 @@
             android:layout_below="@+id/ivImage1"
             android:background="@drawable/ic_queue_black_48dp"/>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verder"
+            android:id="@+id/button"
+            android:layout_alignBottom="@+id/ivImage2"
+            android:layout_alignParentEnd="true"
+            android:onClick="continueClick"/>
 
 
     </RelativeLayout>
+    <ImageView
+        android:id="@+id/full_screen_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:scaleType="fitXY"/>
 
 </RelativeLayout>

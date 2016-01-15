@@ -77,7 +77,7 @@ public class AfspraakMakenArtsTijd extends AppCompatActivity implements AdapterV
         AfspraakArtsTijdListAdapter ala = (AfspraakArtsTijdListAdapter) parent.getAdapter();
         Tijd tijd = ala.getItem(position);
         String arts = (String) getIntent().getExtras().getString("Arts");
-        Intent intent = new Intent(this, AfspraakMaken.class);
+        Intent intent = new Intent(this, PhotoActivity.class);
         intent.putExtra("Tijd", tijd.getTijd());
         intent.putExtra("Arts", arts);
         intent.putExtra("vraagNummer",1);

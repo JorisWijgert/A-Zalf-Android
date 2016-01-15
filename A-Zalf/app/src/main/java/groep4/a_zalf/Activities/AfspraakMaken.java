@@ -379,6 +379,7 @@ public class AfspraakMaken extends AppCompatActivity {
                         afspraakMakenActivity.putExtra("Arts", arts);
                         String tijd = (String) getIntent().getExtras().getString("Tijd");
                         afspraakMakenActivity.putExtra("Tijd", tijd);
+                        finish();
                         startActivity(afspraakMakenActivity);
                     }
                 });
