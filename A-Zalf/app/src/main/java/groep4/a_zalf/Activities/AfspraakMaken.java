@@ -1,5 +1,6 @@
 package groep4.a_zalf.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,13 @@ public class AfspraakMaken extends AppCompatActivity {
     private int vraagNummer;
     public String a1, a2, a3, a4, a5;
 
+    public static Activity v1;
+    public static Activity v2;
+    public static Activity v3;
+    public static Activity v4;
+    public static Activity v5;
+    public static Activity v6;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +40,7 @@ public class AfspraakMaken extends AppCompatActivity {
         switch (vraagNummer)
         {
             case 1:
+                v1 = this;
                 tvVraag.setText("Waar zit de aandoening ?");
                 btAntwoord1.setText("Hoofd");
                 btAntwoord2.setText("Romp");
@@ -89,12 +98,12 @@ public class AfspraakMaken extends AppCompatActivity {
                 });
                 break;
             case 2:
+                v2 = this;
                 tvVraag.setText("Hoe ziet de aandoening eruit ?");
                 btAntwoord1.setText("Glad");
                 btAntwoord2.setText("Gebold");
                 btAntwoord3.setText("Inkepingen");
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
-                btAntwoord3.setText(a1);
                 pbAfspraak.setProgress(20);
 
                 btAntwoord1.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +158,7 @@ public class AfspraakMaken extends AppCompatActivity {
                 });
                 break;
             case 3:
+                v3 = this;
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
 
@@ -214,6 +224,7 @@ public class AfspraakMaken extends AppCompatActivity {
 
                 break;
             case 4:
+                v4 = this;
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
                 a3 = (String) getIntent().getExtras().getString("Antwoord3");
@@ -283,6 +294,7 @@ public class AfspraakMaken extends AppCompatActivity {
 
                 break;
             case 5:
+                v5 = this;
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
                 a3 = (String) getIntent().getExtras().getString("Antwoord3");
@@ -356,6 +368,7 @@ public class AfspraakMaken extends AppCompatActivity {
 
                 break;
             case 6:
+                v6 = this;
                 //De afspraak moet hier afgerond worden.
                 a1 = (String) getIntent().getExtras().getString("Antwoord1");
                 a2 = (String) getIntent().getExtras().getString("Antwoord2");
@@ -380,6 +393,15 @@ public class AfspraakMaken extends AppCompatActivity {
                         String tijd = (String) getIntent().getExtras().getString("Tijd");
                         afspraakMakenActivity.putExtra("Tijd", tijd);
                         finish();
+                        PhotoActivity.phActivity.finish();
+                        AfspraakMakenArtsTijd.tijdActivity.finish();
+                        AfspraakMakenMetArts.artsActivity.finish();
+                        v1.finish();
+                        v2.finish();
+                        v3.finish();
+                        v4.finish();
+                        v5.finish();
+                        v6.finish();
                         startActivity(afspraakMakenActivity);
                     }
                 });

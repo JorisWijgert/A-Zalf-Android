@@ -1,6 +1,7 @@
 package groep4.a_zalf.Activities;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -17,12 +18,14 @@ public class PhotoActivity extends AppCompatActivity {
 
     private ImageView ivImage1, ivImage2;
     private ArrayList<Bitmap> pictures;
+    public static Activity phActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
         pictures = new ArrayList<>();
+        phActivity = this;
         final ImageView fullScreenContainer = (ImageView) this.findViewById(R.id.full_screen_container);
         ivImage1 = (ImageView) this.findViewById(R.id.ivImage1);
         ivImage1.setOnClickListener(new View.OnClickListener() {

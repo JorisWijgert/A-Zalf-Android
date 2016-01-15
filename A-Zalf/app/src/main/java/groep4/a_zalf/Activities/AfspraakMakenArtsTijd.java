@@ -1,5 +1,6 @@
 package groep4.a_zalf.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,12 +27,14 @@ public class AfspraakMakenArtsTijd extends AppCompatActivity implements AdapterV
     private ListView lvArtsenTijd;
     private List<Tijd> artsenTijd;
 
+    public static Activity tijdActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afspraak_maken_arts_tijd);
         artsenTijd = new ArrayList<>();
-
+        tijdActivity = this;
         artsenTijd.add(new Tijd("10:00 - 10:30"));
         artsenTijd.add(new Tijd("11:00 - 11:30"));
         artsenTijd.add(new Tijd("13:00 - 13:30"));
@@ -47,8 +50,7 @@ public class AfspraakMakenArtsTijd extends AppCompatActivity implements AdapterV
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
-                if(!selectedItemView.toString().equals("Kies hier uw datum"))
-                {
+                if (!selectedItemView.toString().equals("Kies hier uw datum")) {
                     spDag.setVisibility(View.INVISIBLE);
                     //tvTijd.setVisibility(View.VISIBLE);
                     lvArtsenTijd.setVisibility(View.VISIBLE);
@@ -71,7 +73,6 @@ public class AfspraakMakenArtsTijd extends AppCompatActivity implements AdapterV
     }
 
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         AfspraakArtsTijdListAdapter ala = (AfspraakArtsTijdListAdapter) parent.getAdapter();
@@ -80,7 +81,7 @@ public class AfspraakMakenArtsTijd extends AppCompatActivity implements AdapterV
         Intent intent = new Intent(this, PhotoActivity.class);
         intent.putExtra("Tijd", tijd.getTijd());
         intent.putExtra("Arts", arts);
-        intent.putExtra("vraagNummer",1);
+        intent.putExtra("vraagNummer", 1);
         startActivity(intent);
     }
 }

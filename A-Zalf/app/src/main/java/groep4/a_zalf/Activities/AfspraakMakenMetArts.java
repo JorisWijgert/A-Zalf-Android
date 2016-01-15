@@ -1,5 +1,6 @@
 package groep4.a_zalf.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,12 +20,14 @@ public class AfspraakMakenMetArts extends AppCompatActivity implements AdapterVi
     private ListView lvArtsen;
     private List<Arts> artsen;
 
+    public static Activity artsActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afspraak_maken_met_arts);
         initializeUIComponents();
-
+        artsActivity = this;
         artsen = new ArrayList<>();
         artsen.add(new Arts("Bianca"));
         artsen.add(new Arts("Friso"));
